@@ -20,3 +20,49 @@ WHERE teamID='NYA' and yearID=1927"
 sqldf(query)
 ```
 
+## Examples
+### Now let's do a few more examples using the Lahman Baseball Database
+Suppose we wanted to find all instances where Yankee players have hit 40 homeruns or more:
+  
+
+```{r}
+query<- 'SELECT playerID,yearID,teamID,HR FROM Batting
+WHERE TeamID="NYA" and HR>=40'
+sqldf(query)
+```
+
+Suppose we want to find all players who have more than 40 home runs, and less than 60 strikeouts:
+  
+
+```{r}
+query<- "SELECT playerID,yearID,teamID,HR,SO FROM Batting
+WHERE HR>40 and SO<60"
+sqldf(query)
+```
+
+Suppose we want to find all players on the Phillies who have hit more than 30 homeruns in the 1970s:
+  
+
+```{r}
+query<-"SELECT playerID,yearID,teamID,HR FROM Batting
+WHERE teamID='PHI' and HR>30 and yearID<=1979 and yearID>=1970"
+sqldf(query)
+```
+
+Now, let's add something new.. Suppose we want to find all the players who have hit more than 50 homeruns, and we want the list to show the player with the highest number of homeruns first:
+
+```{r}
+query<- "SELECT playerID,yearID,HR FROM Batting
+WHERE HR>50
+ORDER BY HR DESC"
+sqldf(query)
+```
+
+Finally, suppose we want to find all the players who have been at bat more than 400 time, and have less than 10 strikeouts. We want to by least to most number of strikeouts.
+
+```{r}
+query<- "SELECT playerID,yearID,teamID,HR,AB,SO FROM Batting
+WHERE SO<10 and AB>400
+ORDER BY SO"
+sqldf(query)
+```
