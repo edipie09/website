@@ -242,6 +242,10 @@ sqldf(query)</code></pre>
 ## 7 schmimi01   1977    PHI 38
 ## 8 luzingr01   1978    PHI 35
 ## 9 schmimi01   1979    PHI 45</code></pre>
+</div>
+</div>
+<div id="ordering-rows" class="section level2">
+<h2>Ordering Rows</h2>
 <p>Now, let’s add something new.. Suppose we want to find all the players who have hit more than 50 homeruns, and we want the list to show the player with the highest number of homeruns first:</p>
 <pre class="r"><code>query&lt;- &quot;SELECT playerID,yearID,HR FROM Batting
 WHERE HR&gt;50
@@ -355,7 +359,6 @@ sqldf(query)</code></pre>
 ## 63 holmeto01   1945    BSN 28 636  9
 ## 64 boudrlo01   1948    CLE 18 560  9
 ## 65 mitchda01   1952    CLE  5 511  9</code></pre>
-</div>
 </div>
 
 

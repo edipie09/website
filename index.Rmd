@@ -49,6 +49,8 @@ WHERE teamID='PHI' and HR>30 and yearID<=1979 and yearID>=1970"
 sqldf(query)
 ```
 
+##Ordering Rows
+
 Now, let's add something new.. Suppose we want to find all the players who have hit more than 50 homeruns, and we want the list to show the player with the highest number of homeruns first:
 
 ```{r}
