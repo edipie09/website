@@ -120,6 +120,8 @@ $(document).ready(function () {
 </div>
 
 
+<div id="examples-using-the-lahmans-baseball-database-and-sqldf" class="section level1">
+<h1>Examples using the Lahman’s Baseball Database and sqldf</h1>
 <div id="filtering-rows-and-columns" class="section level2">
 <h2>Filtering Rows and Columns</h2>
 <p>With SQL, you can filter columns with SELECT and Rows with WHERE. Let’s look at an example using the Lahman Baseball Database. First, we need to load some packages.</p>
@@ -155,11 +157,6 @@ sqldf(query)</code></pre>
 ## 23 shockur01   1927    NYA  0
 ## 24 thomamy01   1927    NYA  0
 ## 25  weraju01   1927    NYA  1</code></pre>
-</div>
-<div id="examples" class="section level2">
-<h2>Examples</h2>
-<div id="now-lets-do-a-few-more-examples-using-the-lahman-baseball-database" class="section level3">
-<h3>Now let’s do a few more examples using the Lahman Baseball Database</h3>
 <p>Suppose we wanted to find all instances where Yankee players have hit 40 homeruns or more:</p>
 <pre class="r"><code>query&lt;- 'SELECT playerID,yearID,teamID,HR FROM Batting
 WHERE TeamID=&quot;NYA&quot; and HR&gt;=40'
@@ -242,7 +239,6 @@ sqldf(query)</code></pre>
 ## 7 schmimi01   1977    PHI 38
 ## 8 luzingr01   1978    PHI 35
 ## 9 schmimi01   1979    PHI 45</code></pre>
-</div>
 </div>
 <div id="ordering-rows" class="section level2">
 <h2>Ordering Rows</h2>
@@ -359,6 +355,7 @@ sqldf(query)</code></pre>
 ## 63 holmeto01   1945    BSN 28 636  9
 ## 64 boudrlo01   1948    CLE 18 560  9
 ## 65 mitchda01   1952    CLE  5 511  9</code></pre>
+</div>
 </div>
 
 

@@ -3,6 +3,7 @@ title: "SQL"
 output: html_document
 ---
 
+#Examples using the Lahman's Baseball Database and sqldf
 ## Filtering Rows and Columns
 
 With SQL, you can filter columns with SELECT and Rows with WHERE. Let's look at an example using the Lahman Baseball Database. First, we need to load some packages.
@@ -20,8 +21,7 @@ WHERE teamID='NYA' and yearID=1927"
 sqldf(query)
 ```
 
-## Examples
-### Now let's do a few more examples using the Lahman Baseball Database
+
 Suppose we wanted to find all instances where Yankee players have hit 40 homeruns or more:
   
 
