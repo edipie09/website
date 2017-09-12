@@ -3,10 +3,15 @@ title: "SQL"
 output: html_document
 ---
 
-#Examples using the Lahman's Baseball Database and sqldf
-## Filtering Rows and Columns
 
-With SQL, you can filter columns with SELECT and Rows with WHERE. Let's look at an example using the Lahman Baseball Database. First, we need to load some packages.
+
+##### On this page you will find examples on how to use SQL in R Studio to find specific information from a large database. For these examples, we will use the Lahman's Baseball Database.
+
+***
+
+## Filtering Rows and Columns 
+
+With SQL, you can filter columns with SELECT and rows with WHERE. Let's look at an example using the Lahman Baseball Database. First, we need to load some packages.
 
 ```{r warning=FALSE,message=FALSE}
 library(Lahman)
@@ -49,9 +54,12 @@ WHERE teamID='PHI' and HR>30 and yearID<=1979 and yearID>=1970"
 sqldf(query)
 ```
 
-##Ordering Rows
 
-Now, let's add something new.. Suppose we want to find all the players who have hit more than 50 homeruns, and we want the list to show the player with the highest number of homeruns first:
+***
+
+## Ordering Rows
+
+Now, let's add something new... Suppose we want to find all the players who have hit more than 50 homeruns, and we want the list to show the player with the highest number of homeruns first. The ORDER BY commands automatically orders in ascending order, so we have to add DESC for the highest number to appear first: 
 
 ```{r}
 query<- "SELECT playerID,yearID,HR FROM Batting
@@ -60,7 +68,7 @@ ORDER BY HR DESC"
 sqldf(query)
 ```
 
-Finally, suppose we want to find all the players who have been at bat more than 400 time, and have less than 10 strikeouts. We want to by least to most number of strikeouts.
+Finally, suppose we want to find all the players who have been at bat more than 400 time, and have less than 10 strikeouts. We want to order the list by least to most number of strikeouts.
 
 ```{r}
 query<- "SELECT playerID,yearID,teamID,HR,AB,SO FROM Batting
@@ -68,3 +76,9 @@ WHERE SO<10 and AB>400
 ORDER BY SO"
 sqldf(query)
 ```
+
+***
+
+## Aggregation 
+
+
