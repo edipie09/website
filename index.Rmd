@@ -81,4 +81,62 @@ sqldf(query)
 
 ## Aggregation 
 
+Let's do some more examples using Aggregation as a way to group information. Supppose we want to find the total of all Babe Ruth's homeruns. We will use the command GROUP BY to find this information. The following commands will also be used thoughout these examples: sum(), avg(), max(), and min().
+
+```{r}
+query<-"SELECT playerID,sum(HR) FROM Batting
+WHERE playerID='ruthba01'
+GROUP BY playerID"
+sqldf(query)
+```
+
+Suppose we need to find the career homerun totals of all players, but limit the display to only those that have 600 or more homeruns. We want to have the players with the highest totals at the top. We will use the command HAVING to limit the display. 
+
+```{r}
+query<-"SELECT playerID,sum(HR) FROM Batting
+GROUP BY playerID
+HAVING sum(HR)>600
+ORDER BY sum(HR) DESC"
+sqldf(query)
+```
+
+
+Finally, suppose we want to find the players with the highest homerun average over their careers. We want to limit the display to to those who have an average of more than 30 homeruns per year. Again, we want to see the players with the highest averages on top of the list. 
+
+```{r}
+query<-"SELECT playerID,avg(HR) FROM Batting
+GROUP BY playerID
+HAVING avg(HR)>30
+ORDER BY avg(HR) DESC"
+sqldf(query)
+```
+
+***
+
+## Joins
+
+Joining is a way take information from two differnt tables and display them similanteously. So far, we've only been using the Batting table, but for these examples we will need to join the Batting table with the Master table, and the Teams table. We will use the command INNER JOIN to connect these tables, and ON to specifiy the common link between the two tables. For this first example, the common link is player ID, and we will use nameFIRST and nameLAST from the Master table. 
+
+
+Suppose we want to see the home runs, year, and team ID, for Babe Ruth, but instead of displaying Babe Ruth's player ID, we want our results to display his first and last name.
+
+
+```{r}
+query<-"SELECT nameFIRST,nameLAST,teamID,yearID,HR
+FROM Batting INNER JOIN Master
+On Batting.playerID=Master.playerID
+WHERE Batting.playerID='ruthba01'"
+sqldf(query)
+```
+
+Suppose we want to find all instances of players hitting more than 50 homeruns. We want to display the first and last names of players, the team ID, the year ID, and the homerun totals.
+
+```{r}
+query<-"SELECT nameFiRST,nameLAST,teamID,HR
+FROM Batting INNER JOIN Master
+On Batting.playerID=Master.playerID
+WHERE HR>50
+ORDER BY HR DESC"
+sqldf(query)
+```
 
