@@ -129,7 +129,7 @@ WHERE Batting.playerID='ruthba01'"
 sqldf(query)
 ```
 
-Suppose we want to find all instances of players hitting more than 50 homeruns. We want to display the first and last names of players, the team ID, the year ID, and the homerun totals.
+For the last example, suppose we want to find all instances of players hitting more than 50 homeruns. We want to display the first and last names of players, the team ID, the year ID, and the homerun totals.
 
 ```{r}
 query<-"SELECT nameFiRST,nameLAST,teamID,HR
@@ -137,6 +137,20 @@ FROM Batting INNER JOIN Master
 On Batting.playerID=Master.playerID
 WHERE HR>50
 ORDER BY HR DESC"
+sqldf(query)
+```
+
+Suppose we want to list all the players named Bob who averaged more than one million dollars per year in salary for their careers. Include last names. 
+
+```{r}
+query<-"SELECT nameLAST,nameFIRST,avg(salary)
+FROM Salaries INNER JOIN Master
+ON Salaries.playerID=Master.playerID
+WHERE nameFIRST='Bob'
+GROUP BY Salaries.playerID
+HAVING avg(salary)>1000000
+ORDER BY avg(salary) DESC"
+
 sqldf(query)
 ```
 

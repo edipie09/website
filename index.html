@@ -438,7 +438,7 @@ sqldf(query)</code></pre>
 ## 20      Babe     Ruth    NYA   1933 34
 ## 21      Babe     Ruth    NYA   1934 22
 ## 22      Babe     Ruth    BSN   1935  6</code></pre>
-<p>Suppose we want to find all instances of players hitting more than 50 homeruns. We want to display the first and last names of players, the team ID, the year ID, and the homerun totals.</p>
+<p>For the last example, suppose we want to find all instances of players hitting more than 50 homeruns. We want to display the first and last names of players, the team ID, the year ID, and the homerun totals.</p>
 <pre class="r"><code>query&lt;-&quot;SELECT nameFiRST,nameLAST,teamID,HR
 FROM Batting INNER JOIN Master
 On Batting.playerID=Master.playerID
@@ -482,6 +482,25 @@ sqldf(query)</code></pre>
 ## 34    Willie      Mays    NY1 51
 ## 35     Cecil   Fielder    DET 51
 ## 36    Andruw     Jones    ATL 51</code></pre>
+<p>Suppose we want to list all the players named Bob who averaged more than one million dollars per year in salary for their careers. Include last names.</p>
+<pre class="r"><code>query&lt;-&quot;SELECT nameLAST,nameFIRST,avg(salary)
+FROM Salaries INNER JOIN Master
+ON Salaries.playerID=Master.playerID
+WHERE nameFIRST='Bob'
+GROUP BY Salaries.playerID
+HAVING avg(salary)&gt;1000000
+ORDER BY avg(salary) DESC&quot;
+
+sqldf(query)</code></pre>
+<pre><code>##    nameLast nameFirst avg(salary)
+## 1   Wickman       Bob     2635813
+## 2     Welch       Bob     1930417
+## 3     Howry       Bob     1804583
+## 4    Horner       Bob     1416667
+## 5 Tewksbury       Bob     1288182
+## 6   Stanley       Bob     1067500
+## 7     Boone       Bob     1047580
+## 8     Ojeda       Bob     1035926</code></pre>
 </div>
 
 
